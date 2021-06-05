@@ -1,0 +1,15 @@
+类名：驼峰
+class  AaaBbbCcc:
+
+方法名：小写，下划线
+def length
+def is_empty
+
+变量名:小写
+val
+
+
+评论说明：
+"""该方法完成的目的 """
+#技术细节
+#变量的意义
