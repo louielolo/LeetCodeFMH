@@ -115,8 +115,8 @@ class Linked:
             if cur.val == val:
                 pos_list.append(count)
             #判断测试的长度是否已经超出
-            elif cur.next is None:
-                return [pos_list,False][pos_list is not None]
+            if cur.next is None:
+                return [False,pos_list][len(pos_list) > 0]
             cur = cur.next
             count += 1
     
@@ -141,4 +141,21 @@ class Linked:
     def clear(self):
         """清空链表"""
         self.__head = None
+
+if __name__ == '__main__':
+    s = Linked()
+    s.append(1)
+    s.append(2)
+    s.append(3)
+    s.append(4)
+    s.append(5)
+    s.append(6)
+    s.append(7)
+    s.append(6)
+    s.append(5)
+    s.append(4)
+    s.append(3)
+    s.append(2)
+    s.append(1)
+    print(s.element(7))
 
