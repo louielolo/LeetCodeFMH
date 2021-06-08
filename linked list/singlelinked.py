@@ -1,5 +1,5 @@
 class SingleNode:
-    def __init__(self,val):
+    def __init__(self,val=None):
         self.val = val
         self.next = None
 
@@ -44,7 +44,7 @@ class Linked:
             #将末尾元素的next设置为新结点
             cur.next = newNode
     
-    def add_head(self,val):
+    def add___head(self,val):
         """头部添加元素
         :param val
         """
@@ -137,25 +137,15 @@ class Linked:
                     count += 1
                     pre,cur = cur,cur.next
                 pre.next = cur.next
-    
+
+    def get_head(self):
+        return self.__head
+
+    def set_head(self,val):
+        self.__head = val
+
     def clear(self):
         """清空链表"""
         self.__head = None
 
-if __name__ == '__main__':
-    s = Linked()
-    s.append(1)
-    s.append(2)
-    s.append(3)
-    s.append(4)
-    s.append(5)
-    s.append(6)
-    s.append(7)
-    s.append(6)
-    s.append(5)
-    s.append(4)
-    s.append(3)
-    s.append(2)
-    s.append(1)
-    print(s.element(7))
 
