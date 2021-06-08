@@ -8,6 +8,31 @@ class BinTree(object):
     def __init__(self):
         self.root = None
 
+def DLR(treenode):
+    """Degree Left Right前序遍历"""
+    #使用递归方法
+    if treenode is None:
+        return
+    print(treenode.data)
+    DLR(treenode.left)
+    DLR(treenode.right)
+
+def LDR(treenode):
+    """Left Degree Right中序遍历"""
+    #使用递归方法
+    if treenode is None:
+        return
+    LDR(treenode.left)
+    print(treenode.data)
+    LDR(treenode.right)
+
+def LRD(treenode):
+    """Left Right Degree后序遍历"""
+    if treenode is None:
+        return
+    LRD(treenode.left)
+    LRD(treenode.right)
+    print(treenode.data)
 
 if __name__ == '__main__':
     A = TreeNode(1)
@@ -19,3 +44,8 @@ if __name__ == '__main__':
     A.left,A.right = B,C
     B.left,B.right = D,E
     C.left = F
+    DLR(A)
+    print("------------------------------------------------")
+    LDR(A)
+    print("------------------------------------------------")
+    LRD(A)
