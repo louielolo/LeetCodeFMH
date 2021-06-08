@@ -1,4 +1,5 @@
-def numsystrans():
+import sys 
+def numsystrans(hex_val):
     """接受一个十六进制的数，输出该数值的十进制表示"""
     # 十六(H)->十(D)
     # 十六进制的16个数为0123456789ABCDEF
@@ -6,7 +7,6 @@ def numsystrans():
     # 1. 第0位 B x 16^0 = 11；
     # 2. 第1位 2 x 16^1 = 32；
     # 3. 读数，把结果值相加，11+32=43，即(2B)H=(43)D。
-    hex_val = input()
     if hex_val is None:
         return None
     if len(hex_val)<3:
@@ -22,4 +22,6 @@ def numsystrans():
     return sum
 
 if __name__ == '__main__':
-    print(numsystrans())
+    for line in sys.stdin:
+        a = line.split()
+        print(numsystrans(a[0]))
