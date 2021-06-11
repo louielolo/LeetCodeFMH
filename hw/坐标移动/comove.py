@@ -20,3 +20,38 @@ A10;S20;W10;D30;X;A1A;B10A11;;A10;
 +   A10  =  (10,-10)
 结果 （10， -10）
 """
+import sys
+class Solution:
+    def __init__(self):
+        self.coordinate = [0,0]
+    
+    def legal(self,operation):
+        if operation[0] in ['A','S','D','W']:
+            return True
+        elif operation[1:].isdigital():
+            return True
+        else:
+            return False
+
+    def comove(self,operation):
+        if operation is None or not self.legal(operation):
+            return self.coordinate
+        switch = {
+            'A': lambda x:[self.coordinate[0]-x,self.coordinate[1]],
+            'S': lambda x:[self.coordinate[0],self.coordinate[1]-x],
+            'D': lambda x:[self.coordinate[0]+x,self.coordinate[1]],
+            'W': lambda x:[self.coordinate[0],self.coordinate[1]+x] 
+        }
+        try:
+            self.coordinate = switch[operation[0]](int(operation[1:]))
+        except KeyError as e:
+            print(e)
+        return self.coordinate
+
+if __name__ == '__main__':
+    getline = lambda: sys.stdin.readline().strip() #利用lambda定义读取数据函数
+    line = getline()
+    s = Solution()
+    while line:
+        print(s.comove(line))
+        line = getline()
