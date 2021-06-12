@@ -25,33 +25,32 @@ class Solution:
     def __init__(self):
         self.coordinate = [0,0]
     
-    def legal(self,operation):
-        if operation[0] in ['A','S','D','W']:
-            return True
-        elif operation[1:].isdigit():
+    def is_legal(self,operation):
+        if operation is not None and len(operation)>0 and operation[0] in ['A','S','D','W'] and operation[1:].isdigit():
             return True
         else:
             return False
 
     def comove(self,operation):
-        if operation is None or not self.legal(operation):
-            return self.coordinate
         switch = {
             'A': lambda x:[self.coordinate[0]-x,self.coordinate[1]],
             'S': lambda x:[self.coordinate[0],self.coordinate[1]-x],
             'D': lambda x:[self.coordinate[0]+x,self.coordinate[1]],
             'W': lambda x:[self.coordinate[0],self.coordinate[1]+x] 
         }
-        try:
-            self.coordinate = switch[operation[0]](int(operation[1:]))
-        except KeyError as e:
-            pass
-        return self.coordinate
+        if self.is_legal(operation):
+            try:
+                self.coordinate = switch[operation[0]](int(operation[1:]))
+            except KeyError as e:
+                pass
+            return self.coordinate
+        else:
+            return self.coordinate
 
 if __name__ == '__main__':
-    getline = lambda: sys.stdin.readline().strip() #利用lambda定义读取数据函数
+    getline = lambda: input().split(';') #利用lambda定义读取数据函数
     line = getline()
     s = Solution()
-    while line:
-        print(s.comove(line))
-        line = getline()
+    for elem in line:
+        last_coordinate = s.comove(elem)
+    print(','.join(str(i) for i in last_coordinate))
