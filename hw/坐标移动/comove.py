@@ -28,7 +28,7 @@ class Solution:
     def legal(self,operation):
         if operation[0] in ['A','S','D','W']:
             return True
-        elif operation[1:].isdigital():
+        elif operation[1:].isdigit():
             return True
         else:
             return False
@@ -45,7 +45,7 @@ class Solution:
         try:
             self.coordinate = switch[operation[0]](int(operation[1:]))
         except KeyError as e:
-            print(e)
+            pass
         return self.coordinate
 
 if __name__ == '__main__':
