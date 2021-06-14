@@ -8,4 +8,5 @@ if __name__ == '__main__':
     s = Solution()
     while line:
         print(s.comove(line))
+        s = [int(elem) for elem in line.split()] #去掉空格输入
         line = getline()
