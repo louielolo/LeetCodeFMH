@@ -26,6 +26,7 @@ class Solution:
             t_batch.append([task_array[j] for j in range(pipeline)])
             for j in range(pipeline):
                 task_array.remove(task_array[0])
+                task = task_array
         last_batch = task_array
         for j in range(pipeline-num_last_batch):
             last_batch.append(0)
