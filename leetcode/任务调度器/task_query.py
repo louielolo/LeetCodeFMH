@@ -4,7 +4,6 @@ import collections
 class Solution:
     def leastInterval(self, tasks:list, n: int) -> int:
         freq = collections.Counter(tasks)
-
         # 任务总数
         m = len(freq) #任务种类数
         nextValid = [1] * m
@@ -24,7 +23,6 @@ class Solution:
             
             nextValid[best] = time + n + 1
             rest[best] -= 1
-
         return time
 
 if __name__ == '__main__':
