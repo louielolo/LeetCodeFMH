@@ -11,21 +11,24 @@
 输出：5
 解释：最长子串为 "ababb" ，其中 'a' 重复了 2 次， 'b' 重复了 3 次。
 """
+import collections
 class Solution:
     def __init__(self):
-        self.maxnum = 0
-    def longestSubstring(self,string:str,k:int) -> str:
-        if string is None or len(string)==0:
-            return self.maxnum
-        if len(string)==1:
+        self.count = collections.Counter
+        self.max_length = 0
+
+    def longestSubstring(self,s: list,k: int) -> int:
+        if s is None or len(s) < 1 or max(list(self.count(s).values()))<k:
+            return 0
+        if len(s)==1 and k==1:
             return 1
-        for i in range(len(string)):
-            prestr = string[i]
-            for j in range(1,len(string)):
-                poststr = string[j]
-                if poststr == prestr:
-                    self.maxnum = max(j-i+1,self.maxnum)
-                else:
-                    break
-        return self.maxnum
-                
+        for i in range(len(s)):
+            if len(s)>1:
+                for j in range(i+1,len(s)+1):
+                    if min(list(self.count(s[i:j]).values()))>=k:
+                        self.max_length = max(j-i,self.max_length)
+        return self.max_length
+
+if __name__ == '__main__':
+    s = Solution()
+    print(s.longestSubstring('aaabb',3))
