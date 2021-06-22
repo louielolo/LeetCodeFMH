@@ -34,6 +34,40 @@ n == matrix[i].length
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 """
 from typing import List
+import sys
 class Solution:
+    """寻找下降路径最小"""
+    def __init__(self):
+        self.memo = []
+
+    def dp(self,matrix:list,i:int,j:int):
+        # 索引合法性检查
+        if i < 0 or j < 0 or i >= len(matrix) or j >= len(matrix[0]):
+            return 99999
+        # base case,类似递归到最后的返回值
+        if i == 0:
+            return matrix[0][j]
+        # 备忘录查找，防止重复查找
+        if self.memo[i][j]!=66666:
+            return self.memo[i][j]
+        #递归部分,状态转移部分
+        self.memo[i][j] = matrix[i][j]+min(self.dp(matrix,i-1,j),self.dp(matrix,i-1,j-1),self.dp(matrix,i-1,j+1))
+        return self.memo[i][j]
+
     def minFallingPathSum(self, matrix: List[List[int]]) -> int:
-        pass
+        """主函数"""
+        n = len(matrix)
+        res = sys.maxsize
+        # 备忘录里的初始化为66666
+        self.memo = [[66666]*n for _ in range(n)]
+        # 终点可能在matrix[n-1]的任意一列
+        for j in range(n):
+            res = min(res,self.dp(matrix,n-1,j))
+        return res
+
+
+
+if __name__ == '__main__':
+    s = Solution()
+    matrix = [[2,1,3],[6,5,4],[7,8,9]]
+    print(s.minFallingPathSum(matrix))
