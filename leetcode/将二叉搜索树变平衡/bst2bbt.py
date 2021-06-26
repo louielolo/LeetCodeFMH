@@ -11,7 +11,7 @@ class Solution:
         if root is None:
             return 0
         else:
-            return max(self.MaxDepth(root.left),self.MaxDepth(root.right))+1   
+            return max(self.getDepth(root.left),self.getDepth(root.right))+1   
     def getElemPreOrder(self,root: TreeNode,elem_list: list) -> list:
         """将树中的元素都放入列表"""
         if root is None:
