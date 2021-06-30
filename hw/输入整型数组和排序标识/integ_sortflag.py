@@ -24,6 +24,7 @@
 1 2 3 4 9 25 55 64
 5 4 3 2 1
 """
+import sys
 if __name__ == '__main__':
     getline = lambda: sys.stdin.readline().strip() #利用lambda定义读取数据函数
     randnum = getline()
