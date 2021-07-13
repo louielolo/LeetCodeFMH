@@ -1,11 +1,11 @@
 class ListNode:
-    def __init__(self,val):
+    def __init__(self,val=0,next= None):
         self.val = val
-        self.next = None
+        self.next = next
 class Solution:
     def reverseListNode(self,head:ListNode)->ListNode:
-        if head is None:
-            return None
+        if head.next is None:
+            return head
         last = self.reverseListNode(head.next)
         head.next.next = head
         head.next = None
